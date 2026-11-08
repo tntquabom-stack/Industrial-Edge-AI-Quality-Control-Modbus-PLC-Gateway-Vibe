@@ -130,7 +130,7 @@ Complies with standard PLC addressing conventions (**IEC 61131-3**):
 Open your terminal (Command Prompt, PowerShell, or Bash) and clone the project:
 ```bash
 git clone https://github.com/tntquabom-stack/Industrial-Edge-AI-Quality-Control-Modbus-PLC-Gateway-Vibe.git
-cd industrial-ai-qc-gateway
+cd Industrial-Edge-AI-Quality-Control-Modbus-PLC-Gateway-Vibe
 ```
 
 ---
