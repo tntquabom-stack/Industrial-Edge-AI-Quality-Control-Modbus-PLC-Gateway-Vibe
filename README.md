@@ -19,7 +19,9 @@
 ---
 
 ## 🇻🇳 Tóm tắt nhanh (Quick Vietnamese Guide)
-Dự án mô phỏng hoàn chỉnh một hệ thống **Kiểm định chất lượng sản phẩm bằng thị giác máy tính (AI AOI)** kết hợp **Truyền thông công nghiệp (Modbus TCP)** điều khiển **Xi lanh khí nén gạt hàng lỗi** và **Bảng điều khiển SCADA Web**:
+Dự án cá nhân được thiết kế và phát triển bởi **CNA** (Sinh viên ngành Kỹ thuật Robot & Tự động hoá — **Trường Đại học Công nghệ, ĐHQGHN - VNU-UET**).
+
+Hệ thống mô phỏng hoàn chỉnh một dây chuyền **Kiểm định chất lượng sản phẩm bằng thị giác máy tính (AI AOI)** kết hợp **Truyền thông công nghiệp (Modbus TCP)** điều khiển **Xi lanh khí nén gạt hàng lỗi** và **Bảng điều khiển SCADA Web**:
 * **Không cần phần cứng:** Tích hợp sẵn bộ giả lập băng chuyền và PLC ảo. Ai tải về cũng chạy được ngay lập tức.
 * **Chạy 1-Click trên Windows:** Chỉ cần nhấp đúp file [`run.bat`](run.bat), hệ thống tự cài thư viện và tự bật trình duyệt web tại `http://localhost:8000`.
 * **Độ nhạy vi mô (Micro-Defect):** Phát hiện chính xác các vết xước sợi tóc (từ 5 pixel trở lên), vết nứt, thiếu ốc vít, vết dầu với sai số bắt nhầm bằng 0 (Zero False Positives).
@@ -286,6 +288,15 @@ class CustomYOLODetector(BaseDefectDetector):
 
 ---
 
+## 👨‍💻 Author
+
+* **Author:** **CNA**
+* **Field:** Robotics Engineering & Industrial Automation / AI Robotics
+* **University:** **VNU University of Engineering and Technology (VNU-UET)** *(Trường Đại học Công nghệ — Đại học Quốc gia Hà Nội)*
+
+---
+
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.  
+Copyright (c) 2026 **CNA** — VNU University of Engineering and Technology (UET).
