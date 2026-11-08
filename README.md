@@ -23,7 +23,7 @@ Dự án cá nhân được thiết kế và phát triển bởi **CNA** (Sinh v
 
 Hệ thống mô phỏng hoàn chỉnh một dây chuyền **Kiểm định chất lượng sản phẩm bằng thị giác máy tính (AI AOI)** kết hợp **Truyền thông công nghiệp (Modbus TCP)** điều khiển **Xi lanh khí nén gạt hàng lỗi** và **Bảng điều khiển SCADA Web**:
 * **Không cần phần cứng:** Tích hợp sẵn bộ giả lập băng chuyền và PLC ảo. Ai tải về cũng chạy được ngay lập tức.
-* **Chạy 1-Click trên Windows:** Chỉ cần nhấp đúp file [`run.bat`](run.bat), hệ thống tự cài thư viện và tự bật trình duyệt web tại `http://localhost:8000`.
+* **Chạy nhanh:** Clone repo về máy (`git clone ...`), sau đó trên Windows chỉ cần nhấp đúp file [`run.bat`](run.bat), trên Linux/macOS chạy `./run.sh` hoặc chạy qua Docker. Hệ thống tự động cài thư viện và mở giao diện tại `http://localhost:8000`.
 * **Độ nhạy vi mô (Micro-Defect):** Phát hiện chính xác các vết xước sợi tóc (từ 5 pixel trở lên), vết nứt, thiếu ốc vít, vết dầu với sai số bắt nhầm bằng 0 (Zero False Positives).
 
 ---
@@ -126,37 +126,52 @@ Complies with standard PLC addressing conventions (**IEC 61131-3**):
 
 ## 🚀 Quickstart Guide
 
-### Option A: One-Click Launch (Windows)
-Simply double-click the included batch file:
-```text
-run.bat
+### Step 1: Clone the Repository (All Platforms)
+Open your terminal (Command Prompt, PowerShell, or Bash) and clone the project:
+```bash
+git clone https://github.com/your-username/industrial-ai-qc-gateway.git
+cd industrial-ai-qc-gateway
 ```
-*It automatically checks/installs dependencies, starts the background virtual PLC, launches the QC pipeline, and opens your browser at `http://localhost:8000`.*
 
 ---
 
-### Option B: Manual Launch (Cross-Platform)
+### Step 2: Launch the System
 
-#### 1. Prerequisites
-- **Python 3.10+**
-- (Optional) Docker & Docker Compose
+Choose the method that matches your environment:
 
-#### 2. Installation
+#### 🪟 Method 1: Windows (Automated 1-Click)
+In the project folder, simply double-click **`run.bat`**, or run via terminal:
+```cmd
+run.bat
+```
+> **What it does automatically:** Checks for Python, installs any missing packages from `requirements.txt`, spawns the virtual Modbus PLC on port `5020`, initializes the Edge AI vision engine, and automatically opens your web browser.
+
+#### 🐧 Method 2: Linux / macOS (Automated Script or CLI)
+Make the shell script executable and run:
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/industrial-ai-qc-gateway.git
-cd industrial-ai-qc-gateway
-
-# Install dependencies
+chmod +x run.sh
+./run.sh
+```
+*Or standard Python execution:*
+```bash
 pip install -r requirements.txt
+python3 main.py
 ```
 
-#### 3. Launch System
+#### 🐳 Method 3: Docker (Zero Local Setup)
+Run the entire stack in isolated containers without needing Python or libraries on your host:
 ```bash
-python main.py
+docker compose up --build
 ```
 
-Output:
+---
+
+### Step 3: Access the HMI Dashboard
+
+Open your browser and navigate to:
+👉 **`http://localhost:8000`**
+
+Terminal startup log:
 ```text
 =================================================================
    STARTING INDUSTRIAL EDGE AI QC GATEWAY v1.0.0
@@ -167,9 +182,8 @@ Output:
 [3/4] Initializing Edge AI Optical Inspection Pipeline (Mode: SYNTHETIC)...
 [4/4] Launching Web HMI Dashboard at http://localhost:8000...
 ```
-
-Open your browser and navigate to:
-👉 **`http://localhost:8000`**
+* The **Virtual PLC Modbus TCP Server** will be actively listening on `127.0.0.1:5020`.
+* The **Camera Stream & Real-time SCADA Metrics** will begin streaming immediately.
 
 ---
 
@@ -263,6 +277,7 @@ industrial-ai-qc-gateway/
 ├── docker-compose.yml       # Multi-service composition
 ├── requirements.txt         # Python package dependencies
 ├── run.bat                  # One-click Windows launch script
+├── run.sh                   # One-click Linux/macOS bash launch script
 └── main.py                  # System entrypoint
 ```
 
