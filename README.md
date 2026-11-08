@@ -10,6 +10,14 @@
 
 ---
 
+<p align="center">
+  <img src="assets/dashboard_preview.jpg" alt="Industrial SCADA HMI Dashboard & Real-Time Defect Inspection" width="95%" />
+  <br>
+  <em>Figure 1: Live Edge AI Inspection feed (~99 FPS, 1.6ms latency) detecting a surface anomaly (OIL_STAIN 94%) and triggering pneumatic rejector actuator via Modbus TCP (Coil 00001).</em>
+</p>
+
+---
+
 ## 🇻🇳 Tóm tắt nhanh (Quick Vietnamese Guide)
 Dự án mô phỏng hoàn chỉnh một hệ thống **Kiểm định chất lượng sản phẩm bằng thị giác máy tính (AI AOI)** kết hợp **Truyền thông công nghiệp (Modbus TCP)** điều khiển **Xi lanh khí nén gạt hàng lỗi** và **Bảng điều khiển SCADA Web**:
 * **Không cần phần cứng:** Tích hợp sẵn bộ giả lập băng chuyền và PLC ảo. Ai tải về cũng chạy được ngay lập tức.
@@ -227,6 +235,8 @@ pytest tests/ -v
 industrial-ai-qc-gateway/
 ├── .github/workflows/
 │   └── ci.yml               # Automated CI test workflow for GitHub Actions
+├── assets/
+│   └── dashboard_preview.jpg # Live SCADA HMI & AI defect inspection screenshot
 ├── config/
 │   └── config.yaml          # System, camera, Modbus, and HMI settings
 ├── src/
