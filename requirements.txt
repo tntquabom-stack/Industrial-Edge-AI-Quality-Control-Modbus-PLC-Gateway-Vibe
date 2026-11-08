@@ -1,0 +1,17 @@
+# Core Framework & Web HMI
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+websockets>=12.0
+pyyaml>=6.0
+
+# Computer Vision & Numeric Processing
+numpy>=1.24.0
+pillow>=9.5.0
+opencv-python>=4.8.0
+
+# Industrial Protocols
+pymodbus>=3.6.0
+
+# Testing & Quality
+pytest>=7.4.0
+pytest-asyncio>=0.21.0

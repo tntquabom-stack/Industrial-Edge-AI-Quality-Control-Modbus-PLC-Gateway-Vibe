@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industrial AI Quality Control & Modbus Gateway HMI</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="scada-container">
+    <!-- Header Bar -->
+    <header class="scada-header">
+      <div class="brand">
+        <div class="logo-mark">⚡</div>
+        <div>
+          <h1>EDGE AI QUALITY CONTROL & SCADA GATEWAY</h1>
+          <p class="subtitle">AUTOMATED OPTICAL INSPECTION (AOI) | MODBUS TCP IEC 61131-3</p>
+        </div>
+      </div>
+      <div class="header-status">
+        <div class="status-pill">
+          <span class="pulse-indicator" id="modbus-led"></span>
+          <span id="modbus-status-text">MODBUS PLC: CONNECTED</span>
+        </div>
+        <div class="time-pill" id="clock-display">00:00:00</div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="dashboard-grid">
+      <!-- Left Column: Video Feed & Vision Telemetry -->
+      <section class="card camera-card">
+        <div class="card-header">
+          <h2>LIVE OPTICAL INSPECTION FEED</h2>
+          <div class="badge-group">
+            <span class="badge" id="fps-badge">30.0 FPS</span>
+            <span class="badge badge-accent" id="latency-badge">12.5 ms</span>
+          </div>
+        </div>
+        <div class="video-wrapper">
+          <img src="/video_feed" alt="Live Inspection Camera Stream" class="video-feed" id="live-stream">
+          <div class="optical-crosshair"></div>
+        </div>
+        <div class="camera-footer">
+          <span>Camera: Synthetic Line Simulator | Res: 640x480</span>
+          <span>Station: ST-04 Automated Quality Rejector</span>
+        </div>
+      </section>
+
+      <!-- Right Column: PLC Status, Metrics & Manual Control -->
+      <section class="card-column">
+        <!-- Production Counters -->
+        <div class="card metrics-card">
+          <div class="card-header">
+            <h2>PRODUCTION METRICS (MODBUS 40001 - 40004)</h2>
+          </div>
+          <div class="metric-tiles">
+            <div class="metric-box">
+              <span class="metric-label">TOTAL INSPECTED</span>
+              <span class="metric-val" id="metric-total">0</span>
+            </div>
+            <div class="metric-box pass">
+              <span class="metric-label">PARTS PASSED</span>
+              <span class="metric-val text-pass" id="metric-passed">0</span>
+            </div>
+            <div class="metric-box defect">
+              <span class="metric-label">REJECTED DEFECTS</span>
+              <span class="metric-val text-defect" id="metric-defect">0</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">DEFECT RATE</span>
+              <span class="metric-val text-rate" id="metric-rate">0.0%</span>
+            </div>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-fill" id="defect-progress" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Industrial Actuators & PLC Coils -->
+        <div class="card actuator-card">
+          <div class="card-header">
+            <h2>SHOP FLOOR ACTUATORS & COILS</h2>
+          </div>
+          <div class="actuator-grid">
+            <div class="actuator-item">
+              <div class="lamp-indicator" id="rejector-lamp"></div>
+              <div>
+                <strong>PNEUMATIC REJECTOR</strong>
+                <p>Coil 00001 (Active Low/High Pulse)</p>
+              </div>
+            </div>
+            <div class="actuator-item">
+              <div class="lamp-indicator active-green" id="conveyor-lamp"></div>
+              <div>
+                <strong>CONVEYOR MOTOR</strong>
+                <p>Coil 00002 (Interlocked)</p>
+              </div>
+            </div>
+            <div class="actuator-item">
+              <div class="tower-lamp">
+                <span class="tower-seg red" id="tower-red"></span>
+                <span class="tower-seg green active" id="tower-green"></span>
+              </div>
+              <div>
+                <strong>TOWER ALARM BEACON</strong>
+                <p>Coils 00003 & 00004</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Operator Control Buttons -->
+          <div class="control-actions">
+            <button class="btn btn-warning" id="btn-test-reject">TEST PNEUMATIC EJECTOR</button>
+            <button class="btn btn-primary" id="btn-toggle-conveyor">TOGGLE CONVEYOR</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom: Live Event Log Table -->
+    <section class="card table-card">
+      <div class="card-header">
+        <h2>INSPECTION EVENT LOG (REAL-TIME FIFO BUFFER)</h2>
+        <span class="table-legend">Real-time Defect Classification & Timestamps</span>
+      </div>
+      <div class="table-responsive">
+        <table class="scada-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>TIMESTAMP</th>
+              <th>VERDICT</th>
+              <th>DEFECT TYPE</th>
+              <th>CONFIDENCE</th>
+              <th>INFERENCE TIME</th>
+            </tr>
+          </thead>
+          <tbody id="log-tbody">
+            <tr><td colspan="6" class="text-center">Awaiting inspection triggers...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+system:
+  name: "Industrial Edge AI QC Gateway"
+  version: "1.0.0"
+  log_level: "INFO"
+
+camera:
+  # Mode: "synthetic" (auto-generated conveyor belt with defects), "webcam" (index 0, 1...), or "file"
+  mode: "synthetic"
+  device_id: 0
+  video_path: ""
+  fps: 30
+  width: 640
+  height: 480
+
+inspection:
+  defect_confidence_threshold: 0.65
+  min_defect_area_px: 5  # High-precision micro-scratch sensitivity (>= 5px)
+  max_defect_area_px: 8000
+  inspect_interval_ms: 100
+
+modbus:
+  server_host: "127.0.0.1"
+  server_port: 5020  # Non-privileged port for easy local testing
+  unit_id: 1
+  timeout: 3.0
+  reconnect_interval_s: 2.0
+  rejection_pulse_ms: 250  # Duration of pneumatic cylinder solenoid activation
+
+web:
+  host: "0.0.0.0"
+  port: 8000
+  enable_hmi: true

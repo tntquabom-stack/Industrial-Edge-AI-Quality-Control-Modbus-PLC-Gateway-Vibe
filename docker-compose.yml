@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  edge-ai-qc:
+    build: .
+    container_name: industrial-qc-gateway
+    restart: unless-stopped
+    ports:
+      - "8000:8000"  # Web SCADA/HMI Dashboard & MJPEG Camera Stream
+      - "5020:5020"  # Industrial Modbus TCP Server Port
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./config:/app/config:ro
